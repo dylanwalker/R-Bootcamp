@@ -1,4 +1,4 @@
-# R-Bootcamp
+# R-Bootcamp (QM870)
 
 Learn essential R programming!  Complement this with knowledge of some of the most popular libraries in data analysis and data visualization.  Apply these skills to a several in-demand applications.  No prior programming experience required.
 
