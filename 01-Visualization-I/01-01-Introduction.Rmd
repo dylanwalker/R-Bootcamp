@@ -17,6 +17,9 @@ output: html_notebook
     * [RStudio](#install_RStudio)
     * [Install Libraries](#install_libraries)
 * [Downloading course material](#Downloading-course-material)
+* [Modifying Files](#modFiles)
+* [Let's get set up](#getSetup)
+* [The RStudio Interface](#rstudioInterface)
 
 ---
 
@@ -61,9 +64,9 @@ Additional materials:
 <a class="anchor" id="Access-course-material"></a>
 
 ## Access to course material
-You can access all the notebooks and relevant material from the [course GitHub](https://github.com/soltaniehha/R-Bootcamp). Use to the following BitLink:
+You can access all the notebooks and relevant material from the [course GitHub](https://github.com/dylanwalker/R-Bootcamp). Use to the following BitLink:
 
-# bit.ly/rBootcamp
+# bit.ly/qm870
 
 ---
 
@@ -156,16 +159,55 @@ We only need to install every new library once, but we need to load it every tim
 
 ## Downloading course material
 
-You can download all the notebooks and relevant material from the [course GitHub](https://github.com/soltaniehha/R-Bootcamp) (or **bit.ly/rBootcamp**) by clicking on **Clone or download** button. 
+You can download all the notebooks and relevant material from the [course GitHub](https://github.com/dylanwalker/R-Bootcamp) (or **bit.ly/qm870**) by clicking on **Clone or download** button. 
 
 Alternatively, you can use the following command in your computer's terminal to clone. You need to have Git installed in order for it to work
 
-> `git clone https://github.com/soltaniehha/R-Bootcamp.git`
+> `git clone https://github.com/dylanwalker/R-Bootcamp.git`
 
 Both these methods work, the one I would recommend is to clone this repository from your RStudio. You can follow these steps:
 
 1. In RStudio select Project on the top right corner and then New Project
 2. Select Version Control and then Git
-3. In the Repository URL paste `https://github.com/soltaniehha/R-Bootcamp.git` and call its name R-Bootcamp (or any name of your choice)
+3. In the Repository URL paste `https://github.com/dylanwalker/R-Bootcamp.git` and call its name R-Bootcamp (or any name of your choice)
 4. Select the location you would like this repository to be stored and then click Create Project
 5. Now every time the project (repo) gets updated you can go to the Git tab and "Pull" the latest version.
+
+<a class="anchor" id="modFiles"></a>
+
+## Modifying files
+
+I will be updating the R code as we move through the course. You'll want to be able to pull the latest versions before we start each class. However, as we work through the code in the notebooks, you may want to add you own notes, comment and code. Doing so will create differences beteeen your local copy of the files and the ones in the repository. The best solution is to copy each file to the ./sandbox folder and edit it there. All files in the ,/sandbox folder are ignored by version control (git), so you can edit them freely without worrying about them becoming out of sync with the repository (or haveing all your edits disappear if the file is reverted). I'll show you how to do this now.
+
+<a class="anchor" id="getSetup"></a>
+
+## Let's get set up
+
+If you haven't already done so, we need to make sure you have the software (R, RStudio) installed. The easiest way to do this is to follow the Software Installation section of the course syllabus (which is located in the Resources section of the qtools site). Let's take a few moments to do this now.
+
+<a class="anchor" id="rstudioInterface"></a>
+
+## The RStudio interface
+
+Let's take a few moments to familiarize ourselves with the R Studio interface. R studio is an Integrated Development Environment (IDE) that allows you to:
+
+* edit scripts (ordinary R scripts or Rmarkdown scripts) in a "glorified text editor"
+* run the code in your scripts to the console (where the R interpreter "understands" and executes your code, providing output)
+* manage version control of your project (e.g., through GIT)
+* manage the different packages (libraries) that are installed
+* examine the variables and data in your environment
+* view visualizations (plots)
+* access documentation (help)
+* and many other functions.
+
+Let's walk through the different panels in R Studio:
+
+* Editor
+* Console
+* Upper Right Pane (Environment, History, Connections, Git, Tutorial)
+* Lower Right Pane (Files, Plots, Packages, Help, Viewer)
+
+
+
+
+

@@ -59,6 +59,7 @@ You can also set the aesthetic properties of all points together. For example, w
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy), color = "blue")
 ```
+Notice in the above code, where the color = "blue" was placed. Why didn't we place it inside the aesthetic mapping, aes()? Because aes() is used to map an aesthetic to a variable (column) in our data. If we instead just want to set the value of the color argument of geom_point(). If you had placed color="blue" inside the aes(), the output would be surprising. We'll try this out in the exercises.
 
 ```{r}
 ggplot(data = mpg) + 
@@ -69,4 +70,4 @@ ggplot(data = mpg) +
 
 About 1 in 20 people are colorblind in some way. This means that one or more of the types of cone cells in their eyes — the cells we use to detect color — does not work normally. Because of this, a person who is colorblind sees a reduced color space; two colors which appear distinct to a person with normal color vision may appear to be the same to a person who is colorblind. This phenomenon is not random. Mathematically, there are lines through color space — called "confusion lines" — such that every color on a confusion line appears the same to a person who is colorblind as every other color on that same confusion line.
 
-This webpage by David Nichols has a brief but friednly explanaition of colorblindness and ways to make your charts more accessible to most people: https://davidmathlogic.com/colorblind
+This webpage by David Nichols has a brief but friednly explanation of colorblindness and ways to make your charts more accessible to most people: https://davidmathlogic.com/colorblind

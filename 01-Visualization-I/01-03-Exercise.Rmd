@@ -50,7 +50,7 @@ Map a continuous variable to `color`, `size`, and `shape`. How do these aestheti
 ----
 
 ### Exercise 5
-Try mapping the same variable to multiple aesthetics; what do you observe? For intance, in the displ vs. hwy chart use hwy for size and color.
+Try mapping the same variable to multiple aesthetics; what do you observe? For instance, in the displ vs. hwy chart use hwy for size and color.
 
 ```{r}
 # Your answer goes here
