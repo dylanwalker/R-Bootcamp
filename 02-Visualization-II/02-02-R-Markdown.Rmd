@@ -48,7 +48,11 @@ options(repr.plot.width=5, repr.plot.height=3)
 ```
 
 ### From `ggplot2`
-We have `r nrow(diamonds)` diamonds in this dataset. Only `r sum(diamonds$carat>2.5)` are bigger than 2.5 carats. Here are a few rows of the dataframe:
+We have `r nrow(diamonds)` diamonds in this dataset. Only `r sum(diamonds$carat>2.5)` are bigger than 2.5 carats. 
+
+Notice in the above that we used inline r code by wrapping a code statement with the backticks to run a piece of code and display only its output inline. We used this to determine and display the number of rows in the diamonds dataset, as well as the number of diamonds that have carat > 2.5. 
+
+Here are a few rows of the diamonds dataframe:
 
 ```{r}
 knitr::kable(head(diamonds))
@@ -65,6 +69,7 @@ ggplot(diamonds) +
 To produce a complete report containing all text, code, and results, click "Knit" or press Cmd/Ctrl + Shift + K. You can also do this programmatically with `rmarkdown::render("rmd-sample.Rmd")`. This will display the report in the viewer pane, and create a self-contained HTML file that you can share with others.
 
 ----
+You might be wondering what is happening on the backend when we create the nice markdown visualization from our R markdown file.
 
 When we **knit** the document **knitr** library will run all the code cells and convert it into a markdown (.md) file. This file then will be used by **pandoc** package to convert it to a wide variety of formats. The knit button will convert your document to the first format listed under it. If you click on the down arrow you can select a different format:
 
