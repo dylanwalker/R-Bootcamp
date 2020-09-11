@@ -16,6 +16,7 @@ R Markdown files are designed to be used in three ways:
 
 R Markdown uses a number of R packages as well as some external tools. Because of this our regular help, `?`, will not be as useful as you saw for other packages. To get help use the following resources:
 
+* Help->Markdown Quick Reference
 * *rmarkdown-2.0* Cheatsheet 
 * *rmarkdown-reference*
 
