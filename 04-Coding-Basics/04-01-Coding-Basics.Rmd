@@ -93,6 +93,7 @@ myList
 ```{r}
 (myList <- seq(0, 100, by = 10))
 ```
+Note in the above, this assigns the sequence to myList and "returns it" (i.e., it returns its value, which causes it to be displayed "as if we had typed `myList`" on an empty line. You can also uses this "assign and return" in more complicated ways.
 
 ```{r}
 myChar <- "hello world"
@@ -102,7 +103,7 @@ myChar <- "hello world"
 myChar
 ```
 
-Now look at your RStudio environment in the upper right pane:
+Now look at your RStudio *environment" tab in the upper right pane:
 
 <center> ![](../png/rstudio_glb_env.png){width=400} </center>
 
@@ -370,7 +371,7 @@ x
 names(x)
 ```
 
-While creation:
+Instead of doing this in two separate steps, we set the names at the time that we create the vector:
 
 ```{r}
 x <- c(a = 1, b = 2, c = 3)
@@ -392,6 +393,7 @@ highTemps['Mon']  # accessing the element and its name by calling its name
 ```{r}
 highTemps[['Mon']]
 ```
+
 
 ### Factors
 Factors are a type of vector that contain only predefined values. It is used to store categorical data. For example:

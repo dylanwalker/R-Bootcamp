@@ -55,6 +55,8 @@ A few examples:
 ggplot(data = mpg) +
   geom_smooth(mapping = aes(x = displ, y = hwy, group = drv))
 ```
+So in the above case we mapped the `group` aesthetic to the `drv` variable (which takes one of three different values, corresponding to 4-wheel drive, forward wheel drive, or rear wheel drive). When assigned as an aesthetic for `geom_smooth`, this tells it to run the smoothing for each different group separately. Of course, our plot isn't so great, because we currently can't tell which curve corresponds to which group. Many aesthetics use group under the hood and add a visual property as well, such as linetype and color. The next two examples show this. 
+
 
 ```{r}
 ggplot(data = mpg) + 
@@ -67,3 +69,6 @@ ggplot(data = mpg) +
     mapping = aes(x = displ, y = hwy, color = drv, linetype = drv)
   )
 ```
+
+
+It would be even better if we could ALSO show the scatterplot of points and the smooth line for each group, along with some visual aesthetic (e.g., linetype, color). We'll try this now (along with some other stuff) in the exercises.

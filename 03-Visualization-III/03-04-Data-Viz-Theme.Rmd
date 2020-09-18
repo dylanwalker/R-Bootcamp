@@ -25,10 +25,11 @@ p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
   ggtitle("Cars")
 p
 ```
+Cool, we can add a title. More generally, we can modify labels for the plot, axes, and legends by using `labs`:
 ```{r}
 p2 <- ggplot(mtcars, aes(x = wt, y = mpg, color = factor(gear))) +
   geom_point() +
-  labs(title = "Cars", color = "Gear")
+  labs(title = "Feul Efficiency of Cars", subtitle="(derived from data originally found in the mtcars dataset)", x="Weight", y="Miles per Gallon", color = "Gear", caption="This plot displays how the fuel efficiency of vehicles in the dataset scales with their weight.")
 p2
 ```
 
@@ -82,7 +83,8 @@ p + blank_theme
 ## Template for layered grammar of graphics
 
 
-> ```ggplot(data = <DATA>) + 
+```
+ggplot(data = <DATA>) + 
   <GEOM_FUNCTION>(
      mapping = aes(<MAPPINGS>),
      stat = <STAT>, 

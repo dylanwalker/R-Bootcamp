@@ -92,6 +92,7 @@ Rescale <- function(x) {
   (x - min) / (max - min)
 }
 ```
+Notice also that I "documented" the function using comments to tell what arguments it takes and what it returns.
 
 ```{r}
 x  <- c(0, 50, 100)
@@ -109,6 +110,8 @@ df
 ```
 
 Compared to the original, this code is easier to understand and we've eliminated one class of copy-and-paste errors. There is still quite a bit of duplication since we're doing the same thing to multiple columns. We'll learn how to eliminate that duplication in iteration.
+
+---
 
 ### Exercise 1
 What do these functions do?
@@ -144,12 +147,7 @@ f3 <- function(x, y) {
 # Your answer goes here
 ```
 
-### Exercise 2
-Write a function that takes a dataframe, `x`, `y`, and a selected color and returns a scatterplot with the given color.
-
-```{r}
-# Your answer goes here
-```
+---
 
 ## Function arguments
 Generally, data arguments should come first. Detail arguments should go on the end, and usually should have default values. We specify a default argument by giving it a default value in the function definition using `=`.
@@ -229,7 +227,7 @@ if (this) {
 
 ---
 
-### Exercise 3
+### Exercise 2
 Write a greeting if statement that says "good morning", "good afternoon", or "good evening", depending on the time of day. (Hint: use lubridate's `now()` function to get the current time, and by `hour()` extract the hour of day).
 
 ```{r}
@@ -238,7 +236,7 @@ Write a greeting if statement that says "good morning", "good afternoon", or "go
 
 ---
 
-### Exercise 4
+### Exercise 3
 Implement an if statement: It receives an integer `number`. If our `number` is divisible by 3, it prints "fizz". If it's divisible by 5 it print "buzz". If it's divisible by 3 and 5, it prints "fizzbuzz". Otherwise, it returns the number.
 
 (Hint: `x%%y` gives the remainder of `x` divided by `y`)

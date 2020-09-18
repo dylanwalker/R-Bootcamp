@@ -40,6 +40,8 @@ violin <- ggplot(data = mpg, mapping = aes(x = class, y = hwy)) +
 
 violin
 ```
+Notice what we just did. Rather than write the ggplot on its own line, we actually stored it as a variable, using the `<-` assignment operator.  Then we displayed it by typing the variable as an expression on its own line.  Why would we do this? Well, we might want to add more layers to the plot at a later point. For example, we can flip the coordinates like this: 
+
 
 ```{r}
 violin + coord_flip()
@@ -72,3 +74,10 @@ ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) +
   geom_abline() +
   coord_fixed()
 ```
+
+We won't do this now, but instead I ask you to think about this and see if you can figure out the "intention" of showing the plot with `coord_fixed` and `geom_abline`.  You'll have to look at the documentation to understand what these are. HINT: `coord_fixed` and `geom_abline` give us a baseline reference to compare the relationship between `cty` and `hwy`.
+
+From the standpoint of adding "reference points/lines" to plots, its also good to know about:
+
+* `geom_hline`: add a horizontal line to a plot 
+* `geom_vline`: add a vertical line to a plot
