@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -1479,13 +1478,13 @@ window.initializeCodeFolding = function(show) {
   var currentIndex = 1;
 
   // select all R code blocks
-  var rCodeBlocks = $('pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.julia');
+  var rCodeBlocks = $('pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.julia, pre.foldable');
   rCodeBlocks.each(function() {
 
     // create a collapsable div to wrap the code in
     var div = $('<div class="collapse r-code-collapse"></div>');
-    if (show || $(this)[0].classList.contains('fold-show'))
-      div.addClass('in');
+    show = (show || $(this).hasClass('fold-show')) && !$(this).hasClass('fold-hide');
+    if (show) div.addClass('in');
     var id = 'rcode-643E0F36' + currentIndex++;
     div.attr('id', id);
     $(this).before(div);
@@ -1699,6 +1698,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -1760,8 +1760,8 @@ summary {
 <ol style="list-style-type: decimal">
 <li>Had an arrival delay of two or more hours</li>
 <li>Flew to Houston (IAH or HOU)</li>
-<li>Were operated by United, American, or Delta (hint: use <code>airline</code> dataset to get the two-character carrier codes)</li>
-<li>Departed in summer (July, August, and September)</li>
+<li>Were operated by United, American, or Delta (hint: use <code>airlines</code> dataset to get the two-character carrier codes)</li>
+<li>Departed in summer (June, July, and August)</li>
 <li>Arrived more than two hours late, but didn’t leave late</li>
 <li>Departed by at least an hour delay, but made up over 30 minutes in flight</li>
 <li>Departed between midnight and 6am (inclusive)</li>
@@ -1788,36 +1788,54 @@ summary {
 </ol>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuKGRmIDwtIHRpYmJsZSh4ID0gYyg1LCA2LCAyLCBOQSkpKVxuYGBgIn0= -->
-<pre class="r"><code>(df &lt;- tibble(x = c(5, 6, 2, NA)))</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<ol start="2" style="list-style-type: decimal">
-<li>Apply this answer to <code>flights</code> dataset to list the canceled flights first (assuming <code>NA</code> for <code>dep_delay</code> means the flight was canceled) and then show other flights starting with the ones with large <code>dep_delay</code> in a descending order.</li>
-</ol>
-<p><strong>Answer:</strong></p>
-<hr />
-</div>
-<div id="exercise-5" class="section level3">
-<h3>Exercise 5</h3>
-<p>Brainstorm as many ways as possible to select <code>dep_time</code>, <code>dep_delay</code>, <code>arr_time</code>, and <code>arr_delay</code> from <code>flights</code>.</p>
-<p><strong>Answer:</strong></p>
-<hr />
-</div>
-<div id="exercise-6" class="section level3">
-<h3>Exercise 6</h3>
-<p>What happens if you include the name of a variable multiple times in a <code>select()</code> call?</p>
-<p><strong>Answer:</strong></p>
-<hr />
-</div>
-<div id="exercise-7" class="section level3">
-<h3>Exercise 7</h3>
-<p>Does the result of running the following code surprise you? How do the <code>select</code> helpers deal with case by default? Can you change that default?</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2VsZWN0KGZsaWdodHMsIGNvbnRhaW5zKFwiVElNRVwiKSlcbmBgYCJ9 -->
-<pre class="r"><code>select(flights, contains(&quot;TIME&quot;))</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuKGRmIDwtIHRpYmJsZSh4ID0gYyg1LCA2LCAyLCBOQSkpKVxuYGBgXG5gYGAifQ== -->
+<pre class="r"><code>```r
+(df &lt;- tibble(x = c(5, 6, 2, NA)))</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+2) Apply this answer to `flights` dataset to list the canceled flights first (assuming `NA` for `dep_delay` means the flight was canceled) and then show other flights starting with the ones with large `dep_delay` in a descending order. (Hint 1: You can provide `arrange` with multiple arguments and it will arrange by the first, then the second to resolve ties, etc. ; Hint 2: To verify that you did it correctly, you may have add another pipe and a `slice(rowstart:rowend)`. The total number of canceled flights is 8255)
+
+**Answer:**
+
+---
+
+### Exercise 5
+Brainstorm as many ways as possible to select `dep_time`, `dep_delay`, `arr_time`, and `arr_delay` from `flights`. (Hint: you may find `starts_with`, `ends_with` and `contains` to be useful)
+
+**Answer:**
+
+---
+
+### Exercise 6
+What happens if you include the name of a variable multiple times in a `select()` call?
+
+**Answer:**
+
+---
+
+### Exercise 7
+Does the result of running the following code surprise you? How do the `select` helpers deal with case by default? Can you change that default?
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc2VsZWN0KGZsaWdodHMsIGNvbnRhaW5zKFxcVElNRVxcKSlcbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+select(flights, contains(\TIME\))</code></pre>
+<p>```</p>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1825,7 +1843,7 @@ summary {
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRXhlcmNpc2UiCnN1YnRpdGxlOiAiRGF0YSBUcmFuc2Zvcm1hdGlvbiAtIFBhcnQgMSIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3IgZWNobz1GQUxTRX0KIyBsb2FkaW5nIGxpYnJhcmllcwpsaWJyYXJ5KHRpZHl2ZXJzZSkKbGlicmFyeShueWNmbGlnaHRzMTMpCgojIG1vZGlmeWluZyBjaGFydCBzaXplCm9wdGlvbnMocmVwci5wbG90LndpZHRoPTUsIHJlcHIucGxvdC5oZWlnaHQ9MykKYGBgCgojIyMgRXhlcmNpc2UgMQpGaW5kIGFsbCBmbGlnaHRzIHRoYXQKCjEuIEhhZCBhbiBhcnJpdmFsIGRlbGF5IG9mIHR3byBvciBtb3JlIGhvdXJzCjIuIEZsZXcgdG8gSG91c3RvbiAoSUFIIG9yIEhPVSkKMy4gV2VyZSBvcGVyYXRlZCBieSBVbml0ZWQsIEFtZXJpY2FuLCBvciBEZWx0YSAoaGludDogdXNlIGBhaXJsaW5lYCBkYXRhc2V0IHRvIGdldCB0aGUgdHdvLWNoYXJhY3RlciBjYXJyaWVyIGNvZGVzKQo0LiBEZXBhcnRlZCBpbiBzdW1tZXIgKEp1bHksIEF1Z3VzdCwgYW5kIFNlcHRlbWJlcikKNS4gQXJyaXZlZCBtb3JlIHRoYW4gdHdvIGhvdXJzIGxhdGUsIGJ1dCBkaWRuJ3QgbGVhdmUgbGF0ZQo2LiBEZXBhcnRlZCBieSBhdCBsZWFzdCBhbiBob3VyIGRlbGF5LCBidXQgbWFkZSB1cCBvdmVyIDMwIG1pbnV0ZXMgaW4gZmxpZ2h0CjcuIERlcGFydGVkIGJldHdlZW4gbWlkbmlnaHQgYW5kIDZhbSAoaW5jbHVzaXZlKQoKKipBbnN3ZXI6KioKCi0tLQoKIyMjIEV4ZXJjaXNlIDIKQW5vdGhlciB1c2VmdWwgZHBseXIgZmlsdGVyaW5nIGhlbHBlciBpcyBgYmV0d2VlbigpYC4gV2hhdCBkb2VzIGl0IGRvPyBDYW4geW91IHVzZSBpdCB0byBzaW1wbGlmeSB0aGUgY29kZSBuZWVkZWQgdG8gYW5zd2VyIHRoZSBwcmV2aW91cyBleGVyY2lzZSwgcGFydCA0PwoKKipBbnN3ZXI6KioKCi0tLQoKIyMjIEV4ZXJjaXNlIDMKSG93IG1hbnkgZmxpZ2h0cyBoYXZlIGEgbWlzc2luZyBgZGVwX3RpbWVgPyBXaGF0IG90aGVyIHZhcmlhYmxlcyBhcmUgbWlzc2luZz8gV2hhdCBtaWdodCB0aGVzZSByb3dzIHJlcHJlc2VudD8KCioqQW5zd2VyOioqCgotLS0KCiMjIyBFeGVyY2lzZSA0CjEpIEhvdyBjb3VsZCB5b3UgdXNlIGBhcnJhbmdlKClgIHRvIHNvcnQgYWxsIG1pc3NpbmcgdmFsdWVzIHRvIHRoZSBzdGFydD8gKEhpbnQ6IHVzZSBgaXMubmEoKWAgYW5kIGFwcGx5IHlvdXIgYW5zd2VyIHRvIHRoZSBgZGZgIGRhdGFmcmFtZSBkZWZpbmVkIGJlbG93KToKCmBgYHtyfQooZGYgPC0gdGliYmxlKHggPSBjKDUsIDYsIDIsIE5BKSkpCmBgYAoKMikgQXBwbHkgdGhpcyBhbnN3ZXIgdG8gYGZsaWdodHNgIGRhdGFzZXQgdG8gbGlzdCB0aGUgY2FuY2VsZWQgZmxpZ2h0cyBmaXJzdCAoYXNzdW1pbmcgYE5BYCBmb3IgYGRlcF9kZWxheWAgbWVhbnMgdGhlIGZsaWdodCB3YXMgY2FuY2VsZWQpIGFuZCB0aGVuIHNob3cgb3RoZXIgZmxpZ2h0cyBzdGFydGluZyB3aXRoIHRoZSBvbmVzIHdpdGggbGFyZ2UgYGRlcF9kZWxheWAgaW4gYSBkZXNjZW5kaW5nIG9yZGVyLgoKKipBbnN3ZXI6KioKCi0tLQoKIyMjIEV4ZXJjaXNlIDUKQnJhaW5zdG9ybSBhcyBtYW55IHdheXMgYXMgcG9zc2libGUgdG8gc2VsZWN0IGBkZXBfdGltZWAsIGBkZXBfZGVsYXlgLCBgYXJyX3RpbWVgLCBhbmQgYGFycl9kZWxheWAgZnJvbSBgZmxpZ2h0c2AuCgoqKkFuc3dlcjoqKgoKLS0tCgojIyMgRXhlcmNpc2UgNgpXaGF0IGhhcHBlbnMgaWYgeW91IGluY2x1ZGUgdGhlIG5hbWUgb2YgYSB2YXJpYWJsZSBtdWx0aXBsZSB0aW1lcyBpbiBhIGBzZWxlY3QoKWAgY2FsbD8KCioqQW5zd2VyOioqCgotLS0KCiMjIyBFeGVyY2lzZSA3CkRvZXMgdGhlIHJlc3VsdCBvZiBydW5uaW5nIHRoZSBmb2xsb3dpbmcgY29kZSBzdXJwcmlzZSB5b3U/IEhvdyBkbyB0aGUgYHNlbGVjdGAgaGVscGVycyBkZWFsIHdpdGggY2FzZSBieSBkZWZhdWx0PyBDYW4geW91IGNoYW5nZSB0aGF0IGRlZmF1bHQ/CgpgYGB7cn0Kc2VsZWN0KGZsaWdodHMsIGNvbnRhaW5zKCJUSU1FIikpCmBgYAoKKipBbnN3ZXI6KioK</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkV4ZXJjaXNlIg0Kc3VidGl0bGU6ICJEYXRhIFRyYW5zZm9ybWF0aW9uIC0gUGFydCAxIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCg0KYGBge3IgZWNobz1GQUxTRX0NCiMgbG9hZGluZyBsaWJyYXJpZXMNCmxpYnJhcnkodGlkeXZlcnNlKQ0KbGlicmFyeShueWNmbGlnaHRzMTMpDQoNCiMgbW9kaWZ5aW5nIGNoYXJ0IHNpemUNCm9wdGlvbnMocmVwci5wbG90LndpZHRoPTUsIHJlcHIucGxvdC5oZWlnaHQ9MykNCmBgYA0KDQojIyMgRXhlcmNpc2UgMQ0KRmluZCBhbGwgZmxpZ2h0cyB0aGF0DQoNCjEuIEhhZCBhbiBhcnJpdmFsIGRlbGF5IG9mIHR3byBvciBtb3JlIGhvdXJzDQoyLiBGbGV3IHRvIEhvdXN0b24gKElBSCBvciBIT1UpDQozLiBXZXJlIG9wZXJhdGVkIGJ5IFVuaXRlZCwgQW1lcmljYW4sIG9yIERlbHRhIChoaW50OiB1c2UgYGFpcmxpbmVzYCBkYXRhc2V0IHRvIGdldCB0aGUgdHdvLWNoYXJhY3RlciBjYXJyaWVyIGNvZGVzKQ0KNC4gRGVwYXJ0ZWQgaW4gc3VtbWVyIChKdW5lLCBKdWx5LCBhbmQgQXVndXN0KQ0KNS4gQXJyaXZlZCBtb3JlIHRoYW4gdHdvIGhvdXJzIGxhdGUsIGJ1dCBkaWRuJ3QgbGVhdmUgbGF0ZQ0KNi4gRGVwYXJ0ZWQgYnkgYXQgbGVhc3QgYW4gaG91ciBkZWxheSwgYnV0IG1hZGUgdXAgb3ZlciAzMCBtaW51dGVzIGluIGZsaWdodA0KNy4gRGVwYXJ0ZWQgYmV0d2VlbiBtaWRuaWdodCBhbmQgNmFtIChpbmNsdXNpdmUpDQoNCioqQW5zd2VyOioqDQoNCi0tLQ0KDQojIyMgRXhlcmNpc2UgMg0KQW5vdGhlciB1c2VmdWwgZHBseXIgZmlsdGVyaW5nIGhlbHBlciBpcyBgYmV0d2VlbigpYC4gV2hhdCBkb2VzIGl0IGRvPyBDYW4geW91IHVzZSBpdCB0byBzaW1wbGlmeSB0aGUgY29kZSBuZWVkZWQgdG8gYW5zd2VyIHRoZSBwcmV2aW91cyBleGVyY2lzZSwgcGFydCA0Pw0KDQoqKkFuc3dlcjoqKg0KDQotLS0NCg0KIyMjIEV4ZXJjaXNlIDMNCkhvdyBtYW55IGZsaWdodHMgaGF2ZSBhIG1pc3NpbmcgYGRlcF90aW1lYD8gV2hhdCBvdGhlciB2YXJpYWJsZXMgYXJlIG1pc3Npbmc/IFdoYXQgbWlnaHQgdGhlc2Ugcm93cyByZXByZXNlbnQ/DQoNCioqQW5zd2VyOioqDQoNCi0tLQ0KDQojIyMgRXhlcmNpc2UgNA0KMSkgSG93IGNvdWxkIHlvdSB1c2UgYGFycmFuZ2UoKWAgdG8gc29ydCBhbGwgbWlzc2luZyB2YWx1ZXMgdG8gdGhlIHN0YXJ0PyAoSGludDogdXNlIGBpcy5uYSgpYCBhbmQgYXBwbHkgeW91ciBhbnN3ZXIgdG8gdGhlIGBkZmAgZGF0YWZyYW1lIGRlZmluZWQgYmVsb3cpOg0KDQpgYGB7cn0NCihkZiA8LSB0aWJibGUoeCA9IGMoNSwgNiwgMiwgTkEpKSkNCmBgYA0KDQoyKSBBcHBseSB0aGlzIGFuc3dlciB0byBgZmxpZ2h0c2AgZGF0YXNldCB0byBsaXN0IHRoZSBjYW5jZWxlZCBmbGlnaHRzIGZpcnN0IChhc3N1bWluZyBgTkFgIGZvciBgZGVwX2RlbGF5YCBtZWFucyB0aGUgZmxpZ2h0IHdhcyBjYW5jZWxlZCkgYW5kIHRoZW4gc2hvdyBvdGhlciBmbGlnaHRzIHN0YXJ0aW5nIHdpdGggdGhlIG9uZXMgd2l0aCBsYXJnZSBgZGVwX2RlbGF5YCBpbiBhIGRlc2NlbmRpbmcgb3JkZXIuIChIaW50IDE6IFlvdSBjYW4gcHJvdmlkZSBgYXJyYW5nZWAgd2l0aCBtdWx0aXBsZSBhcmd1bWVudHMgYW5kIGl0IHdpbGwgYXJyYW5nZSBieSB0aGUgZmlyc3QsIHRoZW4gdGhlIHNlY29uZCB0byByZXNvbHZlIHRpZXMsIGV0Yy4gOyBIaW50IDI6IFRvIHZlcmlmeSB0aGF0IHlvdSBkaWQgaXQgY29ycmVjdGx5LCB5b3UgbWF5IGhhdmUgYWRkIGFub3RoZXIgcGlwZSBhbmQgYSBgc2xpY2Uocm93c3RhcnQ6cm93ZW5kKWAuIFRoZSB0b3RhbCBudW1iZXIgb2YgY2FuY2VsZWQgZmxpZ2h0cyBpcyA4MjU1KQ0KDQoqKkFuc3dlcjoqKg0KDQotLS0NCg0KIyMjIEV4ZXJjaXNlIDUNCkJyYWluc3Rvcm0gYXMgbWFueSB3YXlzIGFzIHBvc3NpYmxlIHRvIHNlbGVjdCBgZGVwX3RpbWVgLCBgZGVwX2RlbGF5YCwgYGFycl90aW1lYCwgYW5kIGBhcnJfZGVsYXlgIGZyb20gYGZsaWdodHNgLiAoSGludDogeW91IG1heSBmaW5kIGBzdGFydHNfd2l0aGAsIGBlbmRzX3dpdGhgIGFuZCBgY29udGFpbnNgIHRvIGJlIHVzZWZ1bCkNCg0KKipBbnN3ZXI6KioNCg0KLS0tDQoNCiMjIyBFeGVyY2lzZSA2DQpXaGF0IGhhcHBlbnMgaWYgeW91IGluY2x1ZGUgdGhlIG5hbWUgb2YgYSB2YXJpYWJsZSBtdWx0aXBsZSB0aW1lcyBpbiBhIGBzZWxlY3QoKWAgY2FsbD8NCg0KKipBbnN3ZXI6KioNCg0KLS0tDQoNCiMjIyBFeGVyY2lzZSA3DQpEb2VzIHRoZSByZXN1bHQgb2YgcnVubmluZyB0aGUgZm9sbG93aW5nIGNvZGUgc3VycHJpc2UgeW91PyBIb3cgZG8gdGhlIGBzZWxlY3RgIGhlbHBlcnMgZGVhbCB3aXRoIGNhc2UgYnkgZGVmYXVsdD8gQ2FuIHlvdSBjaGFuZ2UgdGhhdCBkZWZhdWx0Pw0KDQpgYGB7cn0NCnNlbGVjdChmbGlnaHRzLCBjb250YWlucygiVElNRSIpKQ0KYGBgDQoNCioqQW5zd2VyOioqDQo=</div>
 
 
 

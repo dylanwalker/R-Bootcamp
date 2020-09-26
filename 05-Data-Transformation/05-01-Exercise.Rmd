@@ -18,8 +18,8 @@ Find all flights that
 
 1. Had an arrival delay of two or more hours
 2. Flew to Houston (IAH or HOU)
-3. Were operated by United, American, or Delta (hint: use `airline` dataset to get the two-character carrier codes)
-4. Departed in summer (July, August, and September)
+3. Were operated by United, American, or Delta (hint: use `airlines` dataset to get the two-character carrier codes)
+4. Departed in summer (June, July, and August)
 5. Arrived more than two hours late, but didn't leave late
 6. Departed by at least an hour delay, but made up over 30 minutes in flight
 7. Departed between midnight and 6am (inclusive)
@@ -49,14 +49,14 @@ How many flights have a missing `dep_time`? What other variables are missing? Wh
 (df <- tibble(x = c(5, 6, 2, NA)))
 ```
 
-2) Apply this answer to `flights` dataset to list the canceled flights first (assuming `NA` for `dep_delay` means the flight was canceled) and then show other flights starting with the ones with large `dep_delay` in a descending order.
+2) Apply this answer to `flights` dataset to list the canceled flights first (assuming `NA` for `dep_delay` means the flight was canceled) and then show other flights starting with the ones with large `dep_delay` in a descending order. (Hint 1: You can provide `arrange` with multiple arguments and it will arrange by the first, then the second to resolve ties, etc. ; Hint 2: To verify that you did it correctly, you may have add another pipe and a `slice(rowstart:rowend)`. The total number of canceled flights is 8255)
 
 **Answer:**
 
 ---
 
 ### Exercise 5
-Brainstorm as many ways as possible to select `dep_time`, `dep_delay`, `arr_time`, and `arr_delay` from `flights`.
+Brainstorm as many ways as possible to select `dep_time`, `dep_delay`, `arr_time`, and `arr_delay` from `flights`. (Hint: you may find `starts_with`, `ends_with` and `contains` to be useful)
 
 **Answer:**
 

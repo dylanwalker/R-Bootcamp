@@ -42,7 +42,7 @@ airports %>%
 ---
 
 ### Exercise 4
-What does it mean for a flight to have a missing `tailnum`? What do the tail numbers that don't have a matching record in planes have in common? (Hint: one variable explains ~90% of the problems.)
+What does it mean for a flight to have no match in `planes` (i.e., to have a `tailnum` that does not appear in `planes`).  Can you discover what the tail numbers that don't have a matching record in planes have in common? (Hint: one variable explains ~90% of the problems; use an anti-join and then explore the other variables that describe the flight).
 
 ---
 

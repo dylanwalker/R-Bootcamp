@@ -95,6 +95,52 @@ weather %>%
   filter(n > 1)
 ```
 
+---
+
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
+</style>
+<div class="blue">
+
+### Aside: What to do when a dataframe doesn't have a PK? 
+#### Understand & resolve duplicates 
+
+We could look into why this occurs. It turns out `weather` has another variable called `time_hour` that has greater resolution and there are no duplicates in the combination `(time_hour,origin)`:
+```{r}
+weather %>% 
+  group_by(origin,year,month,day,hour) %>% 
+  mutate(n=n()) %>% 
+  ungroup() %>% # this gives me back the original, ungrouped data (replicating the n column across all entries in the group)
+  filter(n>1) %>% 
+  mutate(th_f = as.numeric(time_hour)) %>% # show time_hour as a double
+  select(origin,year,month,day,hour,time_hour,n)
+```
+
+Hmm, only 6 "duplicated" rows. `th_f` shows that time_hour is actually different at a very fine resolution (so we can't even see it when we display the `time_hour` column.)
+
+```{r}
+weather %>% 
+  count(time_hour, origin) %>% 
+  filter(n > 1)
+```
+
+
+We could work with the `time_hour` variable, but a simpler approach  is to remove the duplicates using `distinct()` (here, only the first row in each group is kept; another solution could be to average the weather metrics in each group):
+
+```{r}
+weather_nodup <- weather %>% distinct(year,month,day,hour,origin, .keep_all=TRUE)
+```
+
+```{r}
+weather_nodup %>% 
+  count(year, month, day, hour, origin) %>% 
+  filter(n > 1)
+```
+
+</div>
+
+---
+
 what's the primary key in the flights table? You might think it would be the date plus the flight or tail number, but neither of those are unique:
 
 ```{r}
@@ -373,6 +419,10 @@ df2 <- tribble(
    1,  1,
    1,  2
 )
+
+df1 
+
+df2
 ```
 
 The four possibilities are:

@@ -77,13 +77,13 @@ flights
 ## dplyr basics
 **dplyr** is a grammar of data transformation, providing a consistent set of verbs that help you solve the most common data transformation challenges:
 
-* `filter()` picks cases based on their values.
+* `filter()` picks cases (rows from a dataframe) based on their values.
 * `arrange()` changes the ordering of the rows.
-* `select()` picks variables based on their names.
-* `mutate()` adds new variables that are functions of existing variables
+* `select()` picks variables (columns from a dataframe) based on their names.
+* `mutate()` adds new variables to a dataframe that are functions of existing variables
 * `summarize()` reduces multiple values down to a single summary.
 
-These functions provide the verbs for a language of data transformation These all combine naturally with `group_by()` which allows you to perform any operation "by group".
+These functions provide the verbs for a language of data transformation. These all combine naturally with `group_by()` which allows you to perform any operation "by group".
 
 All verbs work similarly:
 
@@ -102,6 +102,7 @@ dplyr functions never modify their inputs, so if you want to save the result, yo
 
 ```{r}
 jan1 <- filter(flights, month == 1, day == 1)
+jan1
 ```
 
 ### Comparisons
@@ -203,7 +204,7 @@ Use `desc()` to re-order by a column in descending order:
 arrange(flights, desc(dep_delay))
 ```
 
-Missing values are always sorted at the end:
+Missing values are always sorted at the end (whether or not you use `desc()`:
 
 ```{r}
 df <- tibble(x = c(5, 6, 2, NA))
@@ -253,5 +254,7 @@ rename(flights, y = year, tail_num = tailnum)
 #### `everything()` example
 
 ```{r}
-select(flights, time_hour, aritime = air_time, everything())
+select(flights, time_hour, airtime = air_time, everything())
 ```
+
+This brings `time_hour` and `airtime` to the beginning of the dataframe and includes all the other columns after it. 

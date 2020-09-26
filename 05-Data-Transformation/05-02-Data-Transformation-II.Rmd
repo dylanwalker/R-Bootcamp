@@ -111,6 +111,7 @@ delay
 p <- ggplot(data = delay, mapping = aes(x = Distance, y = Delay)) +
   geom_point(aes(size = count, color = dest), alpha = 1/3) +
   geom_smooth(se = FALSE) +
+  geom_text(aes(label=dest),size=2.75) +
   labs(title = "Average distance to destination vs. arrival delay",
       caption = "The circle size shows the number of flights to that destination.")
 
